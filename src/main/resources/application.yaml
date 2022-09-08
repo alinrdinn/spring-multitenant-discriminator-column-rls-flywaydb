@@ -1,0 +1,23 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: true
+    locations:
+    - classpath:db/migrations
+
+multitenancy:
+  master:
+    datasource:
+      url: jdbc:postgresql://localhost:5433/db_microservice
+      username: postgres
+      password: postgres
+      hikari:
+        maximum-pool-size: 2
+  tenant:
+    datasource:
+      url: ${multitenancy.master.datasource.url}
+      username: alinurdin
+      password: postgres
